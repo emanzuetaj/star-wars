@@ -1,0 +1,13 @@
+.selected-character {
+    background-color: black;
+    color: white !important;
+}
+md-toast.success .md-toast-content {
+    background-color: green;
+  }
+  md-toast.error .md-toast-content {
+    background-color: red;
+  }
+  md-toast.warning .md-toast-content {
+    background-color: orange;
+  }

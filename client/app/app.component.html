@@ -1,0 +1,26 @@
+<div layout="row" layout-fill id="app">
+  <sidenav class="white-bg"></sidenav>
+  <md-divider></md-divider>
+  <div layout="column" layout-fill>
+    <header>
+      <md-toolbar class="md-scroll-shrink">
+        <div layout="row" layout-align="start center">
+          <md-button class="menu md-icon-button" hide-gt-sm ng-click="$ctrl.toggleSidenav()" aria-label="Show Menu">
+            <md-icon md-font-icon="menu" class="menu ">menu</md-icon>
+          </md-button>
+          <h3>Star Wars Data Repo</h3>
+        </div>
+      </md-toolbar>
+    </header>
+    <md-content layout="column" flex layout-padding>
+      <div flex>
+        <ui-view layout-fill></ui-view>
+      </div>
+    </md-content>
+  </div>
+</div>
+<div id="overlay" class="overlay" ng-show="$ctrl.isWaiting()">
+  <div layout="row" layout-fill layout-align="center center">
+      <md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+  </div>
+</div>

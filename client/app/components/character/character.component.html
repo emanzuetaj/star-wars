@@ -1,0 +1,203 @@
+<div ng-show="$ctrl.doneLoading">
+    <h1>{{$ctrl.character.name}}</h1>
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="films">
+            <md-content class="md-padding">
+                <div layout="column">
+                    <span>Click on a list item to view movie description</span>
+                    <small><i>Ordered by release date</i></small>
+                </div>
+                <md-list-item class="md-2-line" ng-repeat="item in $ctrl.films | orderBy: 'release_date'" ng-click="$ctrl.showFilmInfo(item)">
+                    <div layout="row">
+                        <div class="bold-txt pad-r-10">
+                            <small>Ep. {{item.episode_id}}</small>
+                        </div>
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{item.title}}&nbsp;({{item.release_date | date: 'yyyy'}})</h3>
+                            <p>Directed by {{item.director}}</p>
+                        </div>
+                    </div>
+                </md-list-item>
+            </md-content>
+        </md-tab>
+        <md-tab label="vehicles">
+            <md-content class="md-padding">
+                <md-toolbar class="md-accent" layout-align="center center" ng-show="$ctrl.vehicles.length === 0">
+                    There are no vehicles to show for this character.
+                </md-toolbar>
+                <div layout="column" ng-hide="$ctrl.vehicles.length === 0">
+                    <md-card ng-repeat="vehicle in $ctrl.vehicles">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{vehicle.name}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Model:</span> {{vehicle.model}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Class:</span> {{vehicle.vehicle_class}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Max Speed:</span>  {{vehicle.max_atmosphering_speed === 'unknown' ? vehicle.max_atmosphering_speed : (vehicle.max_atmosphering_speed | number)}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Pilots:</span> {{vehicle.pilots.length}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Crew:</span> {{vehicle.crew}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Passengers:</span> {{vehicle.passengers}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Manufacturer:</span> {{vehicle.manufacturer}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Cargo Capacity:</span> {{vehicle.cargo_capacity === 'unknown' ? vehicle.cargo_capacity : (vehicle.cargo_capacity | number)}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Cost In Credits:</span> {{vehicle.cost_in_credits === 'unknown' ? vehicle.cost_in_credits : (vehicle.cost_in_credits | number)}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Length:</span> {{vehicle.length}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="starships">
+            <md-content class="md-padding">
+                <md-toolbar class="md-accent" layout-align="center center" ng-show="$ctrl.starships.length === 0">
+                    There are no starships to show for this character.
+                </md-toolbar>
+                <div layout="column" ng-hide="$ctrl.starships.length === 0">
+                    <md-card ng-repeat="ship in $ctrl.starships">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{ship.name}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Model:</span> {{ship.model}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Class:</span> {{ship.starship_class}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Max Speed:</span>  {{ship.max_atmosphering_speed === 'unknown' ? ship.max_atmosphering_speed : (ship.max_atmosphering_speed | number)}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Pilots:</span> {{ship.pilots.length}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Crew:</span> {{ship.crew}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Manufacturer:</span> {{ship.manufacturer}}</span>
+                                <span class="md-subhead"><span class="bold-txt">MGLT:</span> {{ship.MGLT}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Cargo Capacity:</span> {{ship.cargo_capacity === 'unknown' ? ship.cargo_capacity : (ship.cargo_capacity | number)}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Cost In Credits:</span> {{ship.cost_in_credits === 'unknown' ? ship.cost_in_credits : (ship.cost_in_credits | number)}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Length:</span> {{ship.length}}</span>
+                                <span class="md-subhead"><span class="bold-txt">Hyperdrive Rating:</span> {{ship.hyperdrive_rating}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="homeworld">
+            <md-content class="md-padding">
+                <h2>{{$ctrl.planet.name}}</h2>
+                <div layout="column">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <small>Climate</small>
+                                <span class="md-headline">{{$ctrl.planet.climate}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <small>Diameter</small>
+                                <span class="md-headline">{{$ctrl.planet.diameter === 'unknown' ? $ctrl.planet.diameter : ($ctrl.planet.diameter | number)}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <small>Gravity</small>
+                                <span class="md-headline">{{$ctrl.planet.gravity}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <small>Orbital Period</small>
+                                <span class="md-headline">{{$ctrl.planet.orbital_period === 'unknown' ? $ctrl.planet.orbital_period : ($ctrl.planet.orbital_period | number)}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <small>Rotation Period</small>
+                                <span class="md-headline">{{$ctrl.planet.rotation_period === 'unknown' ? $ctrl.planet.rotation_period : ($ctrl.planet.rotation_period | number)}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <small>Surface Water</small>
+                                <span class="md-headline">{{$ctrl.planet.surface_water}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <small>Terrain</small>
+                                <span class="md-headline">{{$ctrl.planet.terrain}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <small>Population</small>
+                                <span class="md-headline">{{$ctrl.planet.population === 'unknown' ? $ctrl.planet.population : ($ctrl.planet.population | number)}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <small>Residents Known</small>
+                                <span class="md-headline">{{$ctrl.planet.residents.length | number}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <small>Film Appeareances</small>
+                                <span class="md-headline">{{$ctrl.planet.films.length}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="profile">
+            <md-content class="md-padding" layout="column">
+                <md-input-container class="md-icon-float md-block">
+                    <label>Name</label>
+                    <md-icon md-font-icon="person">person</md-icon>
+                    <input ng-model="$ctrl.character.name" disabled>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Hair Color</label>
+                    <md-icon md-font-icon="face">face</md-icon>
+                    <input ng-model="$ctrl.character.hair_color" disabled>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Eye Color</label>
+                    <md-icon md-font-icon="remove_red_eye">remove_red_eye</md-icon>
+                    <input ng-model="$ctrl.character.eye_color" disabled>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Height</label>
+                    <md-icon md-font-icon="unfold_more">unfold_more</md-icon>
+                    <input ng-model="$ctrl.character.height" disabled>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Mass</label>
+                    <md-icon md-font-icon="transfer_within_a_station">transfer_within_a_station</md-icon>
+                    <input ng-model="$ctrl.character.mass" disabled>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Record created</label>
+                    <md-icon md-font-icon="create">create</md-icon>
+                    <input ng-value="$ctrl.character.created | date: 'M/dd/yyyy hh:mm a'" disabled>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Record last updated</label>
+                    <md-icon md-font-icon="update">update</md-icon>
+                    <input ng-value="$ctrl.character.edited | date: 'M/dd/yyyy hh:mm a'"  disabled>
+                </md-input-container>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</div>

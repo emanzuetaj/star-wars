@@ -1,0 +1,21 @@
+<md-sidenav ng-click="$ctrl.closeSidenav('left')" class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left">
+    <md-toolbar class="md-scroll-shrink md-accent">
+        <div layout="row" layout-align="center center" flex>
+            <h3>Characters</h3>
+        </div>
+    </md-toolbar>
+    <div layout="column">
+        <md-list-item class="md-2-line" ng-repeat="item in $ctrl.characters" ng-click="$ctrl.selectCharacter(item.url)" ng-class="{'selected-character': $ctrl.selectedCharacter == item.id}">
+            <div class="md-list-item-text" layout="column">
+            <h3>{{item.name}}&nbsp;<small>{{item.gender}}</small></h3>
+            <p>Born: {{item.birth_year}}</p>
+            </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <div layout="row" layout-align="center center">
+            <md-button ng-click="$ctrl.getPrevPageOfCharacters()" ng-disabled="!$ctrl.prev">Prev</md-button>
+            <span>Page {{$ctrl.currentPage}} / {{$ctrl.numberOfPages}}</span>
+            <md-button ng-click="$ctrl.getNextPageOfCharacters()" ng-disabled="!$ctrl.next">Next</md-button>
+        </div>
+    </div>
+</md-sidenav>
