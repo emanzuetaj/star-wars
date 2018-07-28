@@ -15,6 +15,7 @@ class sidenavController {
       this._$mdToast = $mdToast;
       this._$mdSidenav = $mdSidenav;
       this._$mdMedia = $mdMedia;
+      this._$rootScope = $rootScope;
     }
     $onInit() {
       this.getCharacters('https://swapi.co/api/people/?page=1');
@@ -43,6 +44,11 @@ class sidenavController {
           this.prev = response.previous;
 
           this.getAllPages();
+          // make sure to open automatically open menu for small screens
+          if(!this._$mdMedia('gt-sm') && !this._$state.params.characterId) {
+            this._$mdSidenav('left').toggle();
+          }
+          this._$rootScope.$broadcast('callAttentionToSidenav');
         },
         (err) => {
           this.showToast('error', 'An error occurred retrieving data for characters.');
