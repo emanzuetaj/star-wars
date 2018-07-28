@@ -3,6 +3,7 @@ var path = require('path'),
     libPath = path.join(__dirname, 'client'),
     wwwPath = path.join(__dirname, 'dist'),
     pkg = require('./package.json'),
+	CompressionPlugin = require('compression-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
