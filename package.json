@@ -81,9 +81,8 @@
     "yargs": "^4.7.1"
   },
   "scripts": {
-    // "start": "webpack && webpack-dev-server --content-base client/ --hot --inline",
-	  "start": "node server.js", // serves the application
-	  "heroku-postbuild": "webpack -p", // runs after installation
+	  "start": "node server.js",
+	  "heroku-postbuild": "webpack -p",
     "serve": "webpack && webpack-dev-server --content-base client/ --hot --inline",
     "create Component": "gen comp",
     "build": "webpack -p --config ./webpack.config.js --progress",
