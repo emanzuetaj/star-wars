@@ -8,6 +8,7 @@ import ComponentsModule from './components/components';
 import Swapi from './services/swapi/swapi';
 import 'angular-material/angular-material.css';
 import 'normalize.css';
+import '../favicon.ico';
 
 angular.module('app', [
   'ui.router',
@@ -16,10 +17,9 @@ angular.module('app', [
   ngMaterial,
   Swapi
 ])
-.config(($urlRouterProvider, $locationProvider) => {
+.config(($urlRouterProvider) => {
   'ngInject';
   $urlRouterProvider.otherwise("/");
-  $locationProvider.html5Mode(true).hashPrefix('!');
 })
 .config(($mdThemingProvider) => {
 	'ngInject';

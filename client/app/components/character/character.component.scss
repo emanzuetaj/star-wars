@@ -4,3 +4,7 @@
 .bold-txt {
     font-weight: bold;
 }
+// remove chip underline
+.md-chips{
+  box-shadow: 0 0px !important;
+}

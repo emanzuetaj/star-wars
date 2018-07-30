@@ -62,25 +62,27 @@
 
 	var _angularCache2 = _interopRequireDefault(_angularCache);
 
-	var _app = __webpack_require__(90);
+	var _app = __webpack_require__(91);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _components = __webpack_require__(95);
+	var _components = __webpack_require__(96);
 
 	var _components2 = _interopRequireDefault(_components);
 
-	var _swapi = __webpack_require__(99);
+	var _swapi = __webpack_require__(100);
 
 	var _swapi2 = _interopRequireDefault(_swapi);
 
-	__webpack_require__(104);
-
 	__webpack_require__(105);
+
+	__webpack_require__(106);
+
+	__webpack_require__(90);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_angular2.default.module('app', ['ui.router', _components2.default.name, _angularCache2.default, _angularMaterial2.default, _swapi2.default]).config(["$urlRouterProvider", "$locationProvider", function ($urlRouterProvider, $locationProvider) {
+	_angular2.default.module('app', ['ui.router', _components2.default.name, _angularCache2.default, _angularMaterial2.default, _swapi2.default]).config(["$urlRouterProvider", function ($urlRouterProvider) {
 	  'ngInject';
 
 	  $urlRouterProvider.otherwise("/");
@@ -89533,7 +89535,7 @@
 
 
 	// module
-	exports.push([module.id, ".pad-r-10 {\n  padding-right: 10px; }\n\n.bold-txt {\n  font-weight: bold; }\n", ""]);
+	exports.push([module.id, ".pad-r-10 {\n  padding-right: 10px; }\n\n.bold-txt {\n  font-weight: bold; }\n\n.md-chips {\n  box-shadow: 0 0px !important; }\n", ""]);
 
 	// exports
 
@@ -89556,21 +89558,27 @@
 /* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	module.exports = __webpack_require__.p + "favicon.ico";
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	var _appComponent = __webpack_require__(101);
+	var _appComponent = __webpack_require__(102);
 
 	var _appComponent2 = _interopRequireDefault(_appComponent);
 
-	var _app = __webpack_require__(91);
+	var _app = __webpack_require__(92);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	__webpack_require__(106);
+	__webpack_require__(107);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -89582,7 +89590,7 @@
 	exports.default = AppComponent;
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -89640,7 +89648,7 @@
 	exports.default = AppController;
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89649,15 +89657,15 @@
 	  value: true
 	});
 
-	var _characterComponent = __webpack_require__(102);
+	var _characterComponent = __webpack_require__(103);
 
 	var _characterComponent2 = _interopRequireDefault(_characterComponent);
 
-	var _characterController = __webpack_require__(93);
+	var _characterController = __webpack_require__(94);
 
 	var _characterController2 = _interopRequireDefault(_characterController);
 
-	__webpack_require__(107);
+	__webpack_require__(108);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -89671,7 +89679,7 @@
 	exports.default = characterComponent;
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -89705,7 +89713,7 @@
 	        this._$rootScope.$broadcast('characterSelected');
 	        this.getCharacter(this._$stateParams.characterId);
 	        this.character, this.planet = {};
-	        this.films, this.starships, this.vehicles, this.species = new Array();
+	        this.films, this.starships, this.vehicles, this.species, this.speciesNames = new Array();
 	        this.doneLoading = false;
 	      }
 	    }
@@ -89786,6 +89794,7 @@
 	      for (var i = 0; i < this.character.species.length; i++) {
 	        this.Swapi.callApi(this.character.species[i]).then(function (response) {
 	          _this5.species.push(response);
+	          _this5.speciesNames.push(response.name);
 	          _this5.isEverythingDoneLoading();
 	        }, function (err) {
 	          _this5._$rootScope.$broadcast('characterFetchError');
@@ -89817,7 +89826,7 @@
 	exports.default = characterController;
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89830,7 +89839,7 @@
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _character = __webpack_require__(92);
+	var _character = __webpack_require__(93);
 
 	var _character2 = _interopRequireDefault(_character);
 
@@ -89848,7 +89857,7 @@
 	exports.default = characterModule;
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89861,11 +89870,11 @@
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _sidenav = __webpack_require__(98);
+	var _sidenav = __webpack_require__(99);
 
 	var _sidenav2 = _interopRequireDefault(_sidenav);
 
-	var _character = __webpack_require__(94);
+	var _character = __webpack_require__(95);
 
 	var _character2 = _interopRequireDefault(_character);
 
@@ -89876,7 +89885,7 @@
 	exports.default = ComponentsModule;
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89885,15 +89894,15 @@
 	  value: true
 	});
 
-	var _sidenavComponent = __webpack_require__(103);
+	var _sidenavComponent = __webpack_require__(104);
 
 	var _sidenavComponent2 = _interopRequireDefault(_sidenavComponent);
 
-	var _sidenavController = __webpack_require__(97);
+	var _sidenavController = __webpack_require__(98);
 
 	var _sidenavController2 = _interopRequireDefault(_sidenavController);
 
-	__webpack_require__(108);
+	__webpack_require__(109);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -89907,7 +89916,7 @@
 	exports.default = sidenavComponent;
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -90101,29 +90110,6 @@
 	exports.default = sidenavController;
 
 /***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _angular = __webpack_require__(8);
-
-	var _angular2 = _interopRequireDefault(_angular);
-
-	var _sidenav = __webpack_require__(96);
-
-	var _sidenav2 = _interopRequireDefault(_sidenav);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var sidenavModule = _angular2.default.module('sidenav', []).component('sidenav', _sidenav2.default);
-	exports.default = sidenavModule;
-
-/***/ }),
 /* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -90137,7 +90123,30 @@
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _swapi = __webpack_require__(100);
+	var _sidenav = __webpack_require__(97);
+
+	var _sidenav2 = _interopRequireDefault(_sidenav);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var sidenavModule = _angular2.default.module('sidenav', []).component('sidenav', _sidenav2.default);
+	exports.default = sidenavModule;
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _angular = __webpack_require__(8);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _swapi = __webpack_require__(101);
 
 	var _swapi2 = _interopRequireDefault(_swapi);
 
@@ -90148,7 +90157,7 @@
 	exports.default = SwapiModule;
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -90198,25 +90207,25 @@
 	exports.default = SwapiService;
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div layout=\"row\" layout-fill id=\"app\">\r\n  <sidenav class=\"white-bg\"></sidenav>\r\n  <md-divider></md-divider>\r\n  <div layout=\"column\" layout-fill>\r\n    <header>\r\n      <md-toolbar class=\"md-scroll-shrink\">\r\n        <div layout=\"row\" layout-align=\"start center\">\r\n          <md-button class=\"menu md-icon-button\" hide-gt-sm ng-click=\"$ctrl.toggleSidenav()\" aria-label=\"Show Menu\">\r\n            <md-icon md-font-icon=\"menu\" class=\"menu \">menu</md-icon>\r\n          </md-button>\r\n          <h3>Star Wars Database</h3>\r\n        </div>\r\n      </md-toolbar>\r\n    </header>\r\n    <md-content layout=\"column\" flex layout-padding>\r\n      <div flex>\r\n        <h3 ng-show=\"$ctrl.noCharacterSelected\">Select a character from the menu.</h3>\r\n        <ui-view layout-fill ng-hide=\"$ctrl.noCharacterSelected\"></ui-view>\r\n      </div>\r\n    </md-content>\r\n  </div>\r\n</div>\r\n<div id=\"overlay\" class=\"overlay\" ng-show=\"$ctrl.isWaiting()\">\r\n  <div layout=\"row\" layout-fill layout-align=\"center center\">\r\n      <md-progress-circular md-mode=\"indeterminate\" md-diameter=\"100\"></md-progress-circular>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports) {
 
-	module.exports = "<div ng-show=\"$ctrl.doneLoading\">\r\n    <h1>{{$ctrl.character.name}}</h1>\r\n    <md-tabs md-dynamic-height md-border-bottom>\r\n        <md-tab label=\"films\">\r\n            <md-content class=\"md-padding\">\r\n                <div layout=\"column\">\r\n                    <span>Click on a list item to view movie description</span>\r\n                    <small><i>Ordered by release date</i></small>\r\n                </div>\r\n                <md-list-item class=\"md-2-line\" ng-repeat=\"item in $ctrl.films | orderBy: 'release_date'\" ng-click=\"$ctrl.showFilmInfo(item)\">\r\n                    <div layout=\"row\">\r\n                        <div class=\"bold-txt pad-r-10\">\r\n                            <small>Ep. {{item.episode_id}}</small>\r\n                        </div>\r\n                        <div class=\"md-list-item-text\" layout=\"column\">\r\n                            <h3>{{item.title}}&nbsp;({{item.release_date | date: 'yyyy'}})</h3>\r\n                            <p>Directed by {{item.director}}</p>\r\n                        </div>\r\n                    </div>\r\n                </md-list-item>\r\n            </md-content>\r\n        </md-tab>\r\n        <md-tab label=\"vehicles\">\r\n            <md-content class=\"md-padding\">\r\n                <md-toolbar class=\"md-accent\" layout-align=\"center center\" ng-show=\"$ctrl.vehicles.length === 0\">\r\n                    There are no vehicles to show for this character.\r\n                </md-toolbar>\r\n                <div layout=\"column\" ng-hide=\"$ctrl.vehicles.length === 0\">\r\n                    <md-card ng-repeat=\"vehicle in $ctrl.vehicles\">\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <span class=\"md-headline\">{{vehicle.name}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Model:</span> {{vehicle.model}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Class:</span> {{vehicle.vehicle_class}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Max Speed:</span>  {{vehicle.max_atmosphering_speed === 'unknown' ? vehicle.max_atmosphering_speed : (vehicle.max_atmosphering_speed | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Pilots:</span> {{vehicle.pilots.length}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Crew:</span> {{vehicle.crew}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Passengers:</span> {{vehicle.passengers}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Manufacturer:</span> {{vehicle.manufacturer}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Cargo Capacity:</span> {{vehicle.cargo_capacity === 'unknown' ? vehicle.cargo_capacity : (vehicle.cargo_capacity | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Cost In Credits:</span> {{vehicle.cost_in_credits === 'unknown' ? vehicle.cost_in_credits : (vehicle.cost_in_credits | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Length:</span> {{vehicle.length}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                </div>\r\n            </md-content>\r\n        </md-tab>\r\n        <md-tab label=\"starships\">\r\n            <md-content class=\"md-padding\">\r\n                <md-toolbar class=\"md-accent\" layout-align=\"center center\" ng-show=\"$ctrl.starships.length === 0\">\r\n                    There are no starships to show for this character.\r\n                </md-toolbar>\r\n                <div layout=\"column\" ng-hide=\"$ctrl.starships.length === 0\">\r\n                    <md-card ng-repeat=\"ship in $ctrl.starships\">\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <span class=\"md-headline\">{{ship.name}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Model:</span> {{ship.model}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Class:</span> {{ship.starship_class}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Max Speed:</span>  {{ship.max_atmosphering_speed === 'unknown' ? ship.max_atmosphering_speed : (ship.max_atmosphering_speed | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Pilots:</span> {{ship.pilots.length}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Crew:</span> {{ship.crew}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Manufacturer:</span> {{ship.manufacturer}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">MGLT:</span> {{ship.MGLT}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Cargo Capacity:</span> {{ship.cargo_capacity === 'unknown' ? ship.cargo_capacity : (ship.cargo_capacity | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Cost In Credits:</span> {{ship.cost_in_credits === 'unknown' ? ship.cost_in_credits : (ship.cost_in_credits | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Length:</span> {{ship.length}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Hyperdrive Rating:</span> {{ship.hyperdrive_rating}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                </div>\r\n            </md-content>\r\n        </md-tab>\r\n        <md-tab label=\"homeworld\">\r\n            <md-content class=\"md-padding\">\r\n                <h2>{{$ctrl.planet.name}}</h2>\r\n                <div layout=\"column\">\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Climate</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.climate}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Diameter</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.diameter === 'unknown' ? $ctrl.planet.diameter : ($ctrl.planet.diameter | number)}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Gravity</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.gravity}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Orbital Period</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.orbital_period === 'unknown' ? $ctrl.planet.orbital_period : ($ctrl.planet.orbital_period | number)}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Rotation Period</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.rotation_period === 'unknown' ? $ctrl.planet.rotation_period : ($ctrl.planet.rotation_period | number)}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Surface Water</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.surface_water}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Terrain</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.terrain}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Population</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.population === 'unknown' ? $ctrl.planet.population : ($ctrl.planet.population | number)}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Residents Known</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.residents.length | number}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Film Appeareances</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.films.length}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                </div>\r\n            </md-content>\r\n        </md-tab>\r\n        <md-tab label=\"profile\">\r\n            <md-content class=\"md-padding\" layout=\"column\">\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Name</label>\r\n                    <md-icon md-font-icon=\"person\">person</md-icon>\r\n                    <input ng-model=\"$ctrl.character.name\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Hair Color</label>\r\n                    <md-icon md-font-icon=\"face\">face</md-icon>\r\n                    <input ng-model=\"$ctrl.character.hair_color\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Eye Color</label>\r\n                    <md-icon md-font-icon=\"remove_red_eye\">remove_red_eye</md-icon>\r\n                    <input ng-model=\"$ctrl.character.eye_color\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Height</label>\r\n                    <md-icon md-font-icon=\"unfold_more\">unfold_more</md-icon>\r\n                    <input ng-model=\"$ctrl.character.height\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Mass</label>\r\n                    <md-icon md-font-icon=\"transfer_within_a_station\">transfer_within_a_station</md-icon>\r\n                    <input ng-model=\"$ctrl.character.mass\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Record created</label>\r\n                    <md-icon md-font-icon=\"create\">create</md-icon>\r\n                    <input ng-value=\"$ctrl.character.created | date: 'M/dd/yyyy hh:mm a'\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Record last updated</label>\r\n                    <md-icon md-font-icon=\"update\">update</md-icon>\r\n                    <input ng-value=\"$ctrl.character.edited | date: 'M/dd/yyyy hh:mm a'\"  disabled>\r\n                </md-input-container>\r\n            </md-content>\r\n        </md-tab>\r\n    </md-tabs>\r\n</div>"
+	module.exports = "<div ng-show=\"$ctrl.doneLoading\">\r\n    <div layout=\"row\" layout-align=\"start center\">\r\n        <h1>{{$ctrl.character.name}}</h1>\r\n        <md-chips ng-model=\"$ctrl.speciesNames\" readonly=\"true\" md-removable=\"false\"></md-chips>\r\n    </div>\r\n    <md-tabs md-dynamic-height md-border-bottom>\r\n        <md-tab label=\"films\">\r\n            <md-content class=\"md-padding\">\r\n                <div layout=\"column\">\r\n                    <span>Click on a list item to view movie description</span>\r\n                    <small><i>Ordered by release date</i></small>\r\n                </div>\r\n                <md-list-item class=\"md-2-line\" ng-repeat=\"item in $ctrl.films | orderBy: 'release_date'\" ng-click=\"$ctrl.showFilmInfo(item)\">\r\n                    <div layout=\"row\">\r\n                        <div class=\"bold-txt pad-r-10\">\r\n                            <small>Ep. {{item.episode_id}}</small>\r\n                        </div>\r\n                        <div class=\"md-list-item-text\" layout=\"column\">\r\n                            <h3>{{item.title}}&nbsp;({{item.release_date | date: 'yyyy'}})</h3>\r\n                            <p>Directed by {{item.director}}</p>\r\n                        </div>\r\n                    </div>\r\n                </md-list-item>\r\n            </md-content>\r\n        </md-tab>\r\n        <md-tab label=\"vehicles\">\r\n            <md-content class=\"md-padding\">\r\n                <md-toolbar class=\"md-accent\" layout-align=\"center center\" ng-show=\"$ctrl.vehicles.length === 0\">\r\n                    There are no vehicles to show for this character.\r\n                </md-toolbar>\r\n                <div layout=\"column\" ng-hide=\"$ctrl.vehicles.length === 0\">\r\n                    <md-card ng-repeat=\"vehicle in $ctrl.vehicles\">\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <span class=\"md-headline\">{{vehicle.name}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Model:</span> {{vehicle.model}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Class:</span> {{vehicle.vehicle_class}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Max Speed:</span>  {{vehicle.max_atmosphering_speed === 'unknown' ? vehicle.max_atmosphering_speed : (vehicle.max_atmosphering_speed | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Pilots:</span> {{vehicle.pilots.length}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Crew:</span> {{vehicle.crew}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Passengers:</span> {{vehicle.passengers}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Manufacturer:</span> {{vehicle.manufacturer}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Cargo Capacity:</span> {{vehicle.cargo_capacity === 'unknown' ? vehicle.cargo_capacity : (vehicle.cargo_capacity | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Cost In Credits:</span> {{vehicle.cost_in_credits === 'unknown' ? vehicle.cost_in_credits : (vehicle.cost_in_credits | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Length:</span> {{vehicle.length}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                </div>\r\n            </md-content>\r\n        </md-tab>\r\n        <md-tab label=\"starships\">\r\n            <md-content class=\"md-padding\">\r\n                <md-toolbar class=\"md-accent\" layout-align=\"center center\" ng-show=\"$ctrl.starships.length === 0\">\r\n                    There are no starships to show for this character.\r\n                </md-toolbar>\r\n                <div layout=\"column\" ng-hide=\"$ctrl.starships.length === 0\">\r\n                    <md-card ng-repeat=\"ship in $ctrl.starships\">\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <span class=\"md-headline\">{{ship.name}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Model:</span> {{ship.model}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Class:</span> {{ship.starship_class}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Max Speed:</span>  {{ship.max_atmosphering_speed === 'unknown' ? ship.max_atmosphering_speed : (ship.max_atmosphering_speed | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Pilots:</span> {{ship.pilots.length}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Crew:</span> {{ship.crew}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Manufacturer:</span> {{ship.manufacturer}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">MGLT:</span> {{ship.MGLT}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Cargo Capacity:</span> {{ship.cargo_capacity === 'unknown' ? ship.cargo_capacity : (ship.cargo_capacity | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Cost In Credits:</span> {{ship.cost_in_credits === 'unknown' ? ship.cost_in_credits : (ship.cost_in_credits | number)}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Length:</span> {{ship.length}}</span>\r\n                                <span class=\"md-subhead\"><span class=\"bold-txt\">Hyperdrive Rating:</span> {{ship.hyperdrive_rating}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                </div>\r\n            </md-content>\r\n        </md-tab>\r\n        <md-tab label=\"homeworld\">\r\n            <md-content class=\"md-padding\">\r\n                <h2>{{$ctrl.planet.name}}</h2>\r\n                <div layout=\"column\">\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Climate</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.climate}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Diameter</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.diameter === 'unknown' ? $ctrl.planet.diameter : ($ctrl.planet.diameter | number)}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Gravity</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.gravity}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Orbital Period</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.orbital_period === 'unknown' ? $ctrl.planet.orbital_period : ($ctrl.planet.orbital_period | number)}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Rotation Period</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.rotation_period === 'unknown' ? $ctrl.planet.rotation_period : ($ctrl.planet.rotation_period | number)}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Surface Water</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.surface_water}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Terrain</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.terrain}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Population</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.population === 'unknown' ? $ctrl.planet.population : ($ctrl.planet.population | number)}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Residents Known</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.residents.length | number}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                    <md-card>\r\n                        <md-card-title>\r\n                            <md-card-title-text>\r\n                                <small>Film Appeareances</small>\r\n                                <span class=\"md-headline\">{{$ctrl.planet.films.length}}</span>\r\n                            </md-card-title-text>\r\n                        </md-card-title>\r\n                    </md-card>\r\n                </div>\r\n            </md-content>\r\n        </md-tab>\r\n        <md-tab label=\"profile\">\r\n            <md-content class=\"md-padding\" layout=\"column\">\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Name</label>\r\n                    <md-icon md-font-icon=\"person\">person</md-icon>\r\n                    <input ng-model=\"$ctrl.character.name\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Hair Color</label>\r\n                    <md-icon md-font-icon=\"face\">face</md-icon>\r\n                    <input ng-model=\"$ctrl.character.hair_color\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Eye Color</label>\r\n                    <md-icon md-font-icon=\"remove_red_eye\">remove_red_eye</md-icon>\r\n                    <input ng-model=\"$ctrl.character.eye_color\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Height</label>\r\n                    <md-icon md-font-icon=\"unfold_more\">unfold_more</md-icon>\r\n                    <input ng-model=\"$ctrl.character.height\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Mass</label>\r\n                    <md-icon md-font-icon=\"transfer_within_a_station\">transfer_within_a_station</md-icon>\r\n                    <input ng-model=\"$ctrl.character.mass\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Record created</label>\r\n                    <md-icon md-font-icon=\"create\">create</md-icon>\r\n                    <input ng-value=\"$ctrl.character.created | date: 'M/dd/yyyy hh:mm a'\" disabled>\r\n                </md-input-container>\r\n                <md-input-container class=\"md-icon-float md-block\">\r\n                    <label>Record last updated</label>\r\n                    <md-icon md-font-icon=\"update\">update</md-icon>\r\n                    <input ng-value=\"$ctrl.character.edited | date: 'M/dd/yyyy hh:mm a'\"  disabled>\r\n                </md-input-container>\r\n            </md-content>\r\n        </md-tab>\r\n    </md-tabs>\r\n</div>"
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports) {
 
 	module.exports = "<md-sidenav ng-click=\"$ctrl.closeSidenav('left')\" class=\"md-whiteframe-4dp\" md-is-locked-open=\"$mdMedia('gt-sm')\" md-component-id=\"left\">\r\n    <md-toolbar class=\"md-scroll-shrink md-accent\">\r\n        <div layout=\"row\" layout-align=\"center center\" flex>\r\n            <h3>Characters</h3>\r\n        </div>\r\n    </md-toolbar>\r\n    <div layout=\"column\">\r\n        <md-list-item class=\"md-2-line\" ng-repeat=\"item in $ctrl.characters\" ng-click=\"$ctrl.selectCharacter(item.url)\" ng-class=\"{'selected-character': $ctrl.selectedCharacter == item.id}\">\r\n            <div class=\"md-list-item-text\" layout=\"column\">\r\n            <h3>{{item.name}}&nbsp;<small>{{item.gender}}</small></h3>\r\n            <p>Born: {{item.birth_year}}</p>\r\n            </div>\r\n        </md-list-item>\r\n        <md-divider></md-divider>\r\n        <div layout=\"row\" layout-align=\"center center\">\r\n            <md-button ng-click=\"$ctrl.getPrevPageOfCharacters()\" ng-disabled=\"!$ctrl.prev\">Prev</md-button>\r\n            <span>Page {{$ctrl.currentPage}} / {{$ctrl.numberOfPages}}</span>\r\n            <md-button ng-click=\"$ctrl.getNextPageOfCharacters()\" ng-disabled=\"!$ctrl.next\">Next</md-button>\r\n        </div>\r\n    </div>\r\n</md-sidenav>"
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -90242,7 +90251,7 @@
 	}
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -90268,7 +90277,7 @@
 	}
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -90294,7 +90303,7 @@
 	}
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -90320,7 +90329,7 @@
 	}
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag

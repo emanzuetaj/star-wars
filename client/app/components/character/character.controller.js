@@ -12,7 +12,7 @@ class characterController {
         this._$rootScope.$broadcast('characterSelected');
         this.getCharacter(this._$stateParams.characterId);
         this.character, this.planet = {};
-        this.films, this.starships, this.vehicles, this.species = new Array();
+        this.films, this.starships, this.vehicles, this.species, this.speciesNames = new Array();
         this.doneLoading = false;
       }
     }
@@ -84,6 +84,7 @@ class characterController {
         this.Swapi.callApi(this.character.species[i]).then(
           (response) => {
             this.species.push(response);
+            this.speciesNames.push(response.name);
             this.isEverythingDoneLoading();
           },
           (err) => {

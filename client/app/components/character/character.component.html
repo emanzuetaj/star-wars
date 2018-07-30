@@ -1,5 +1,8 @@
 <div ng-show="$ctrl.doneLoading">
-    <h1>{{$ctrl.character.name}}</h1>
+    <div layout="row" layout-align="start center">
+        <h1>{{$ctrl.character.name}}</h1>
+        <md-chips ng-model="$ctrl.speciesNames" readonly="true" md-removable="false"></md-chips>
+    </div>
     <md-tabs md-dynamic-height md-border-bottom>
         <md-tab label="films">
             <md-content class="md-padding">

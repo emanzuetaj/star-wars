@@ -19,10 +19,7 @@ if (isDev) {
     module: {
       loaders: [{
         test: /\.html$/, loader: 'raw'
-      }, {
-        test: /\.(png|jpg)$/,
-        loader: 'file?name=img/[name].[ext]' // inline base64 URLs for <=10kb images, direct URLs for the rest
-      },{
+      }, {test: /\.(jpe?g|png|gif|ico)$/i, loader: 'file?name=[name].[ext]'},{
         test: /\.scss$/,loader: 'style!css!sass'
       }, {
         test: /\.css$/, loader: 'style!css'
@@ -34,7 +31,8 @@ if (isDev) {
         test: [/fontawesome-webfont\.svg/, /fontawesome-webfont\.eot/, /fontawesome-webfont\.ttf/, /fontawesome-webfont\.woff/, /fontawesome-webfont\.woff2/],
         loader: 'file?name=fonts/[name].[ext]'
       },
-        { test: /\.(ttf|otf|eot|svg|woff(2)?)$/, loader: 'url' }]
+      { test: /\.(ttf|otf|eot|svg|woff(2)?)$/, loader: 'url' }
+      ]
     },
     plugins: [
 
@@ -70,10 +68,7 @@ if (isDev) {
     module: {
       loaders: [{
         test: /\.html$/, loader: 'raw'
-      }, {
-        test: /\.(png|jpg)$/,
-        loader: 'file?name=img/[name].[ext]' // inline base64 URLs for <=10kb images, direct URLs for the rest
-      },{
+      }, {test: /\.(jpe?g|png|gif|ico)$/i, loader: 'file?name=[name].[ext]'},{
         test: /\.scss$/,loader: 'style!css!sass'
       }, {
         test: /\.css$/, loader: 'style!css'
@@ -85,7 +80,8 @@ if (isDev) {
         test: [/fontawesome-webfont\.svg/, /fontawesome-webfont\.eot/, /fontawesome-webfont\.ttf/, /fontawesome-webfont\.woff/, /fontawesome-webfont\.woff2/],
         loader: 'file?name=fonts/[name].[ext]'
       },
-        { test: /\.(ttf|otf|eot|svg|woff(2)?)$/, loader: 'url' }]
+        { test: /\.(ttf|otf|eot|svg|woff(2)?)$/, loader: 'url' }
+      ] 
     },
     plugins: [
 
@@ -111,6 +107,7 @@ if (isDev) {
 
       // HtmlWebpackPlugin: Simplifies creation of HTML files to serve your webpack bundles : https://www.npmjs.com/package/html-webpack-plugin
       new HtmlWebpackPlugin({
+        favicon: 'favicon.ico',
         filename: 'index.html',
         pkg: pkg,
         template: path.join(libPath, 'index.ejs'),
