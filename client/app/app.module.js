@@ -19,6 +19,7 @@ angular.module('app', [
 .config(($urlRouterProvider, $locationProvider) => {
   'ngInject';
   $urlRouterProvider.otherwise("/");
+  $locationProvider.html5Mode(true).hashPrefix('!');
 })
 .config(($mdThemingProvider) => {
 	'ngInject';

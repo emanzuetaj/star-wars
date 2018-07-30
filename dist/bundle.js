@@ -89596,20 +89596,33 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var AppController = function () {
-	  AppController.$inject = ["$mdSidenav", "$http", "$state", "$mdMedia"];
-	  function AppController($mdSidenav, $http, $state, $mdMedia) {
+	  AppController.$inject = ["$mdSidenav", "$http", "$state", "$mdMedia", "$scope"];
+	  function AppController($mdSidenav, $http, $state, $mdMedia, $scope) {
 	    'ngInject';
 
 	    _classCallCheck(this, AppController);
 
-	    this.theme = 'default';
 	    this._$mdSidenav = $mdSidenav;
 	    this._$http = $http;
 	    this._$mdMedia = $mdMedia;
 	    this._$state = $state;
+	    this.noCharacterSelected = true;
+	    this._$scope = $scope;
 	  }
 
 	  _createClass(AppController, [{
+	    key: '$onInit',
+	    value: function $onInit() {
+	      var _this = this;
+
+	      this._$scope.$on('noCharacterSelected', function () {
+	        _this.noCharacterSelected = true;
+	      });
+	      this._$scope.$on('characterSelected', function () {
+	        _this.noCharacterSelected = false;
+	      });
+	    }
+	  }, {
 	    key: 'toggleSidenav',
 	    value: function toggleSidenav() {
 	      this._$mdSidenav('left').toggle();
@@ -89689,6 +89702,7 @@
 	    key: '$onInit',
 	    value: function $onInit() {
 	      if (this._$stateParams.characterId) {
+	        this._$rootScope.$broadcast('characterSelected');
 	        this.getCharacter(this._$stateParams.characterId);
 	        this.character, this.planet = {};
 	        this.films, this.starships, this.vehicles, this.species = new Array();
@@ -89970,7 +89984,9 @@
 	        if (!_this2._$mdMedia('gt-sm') && !_this2._$state.params.characterId) {
 	          _this2._$mdSidenav('left').toggle();
 	        }
-	        _this2._$rootScope.$broadcast('callAttentionToSidenav');
+	        if (!_this2._$state.params.characterId) {
+	          _this2._$rootScope.$broadcast('noCharacterSelected');
+	        }
 	      }, function (err) {
 	        _this2.showToast('error', 'An error occurred retrieving data for characters.');
 	        _this2.selectFirstCharacterFound();
@@ -90185,7 +90201,7 @@
 /* 101 */
 /***/ (function(module, exports) {
 
-	module.exports = "<div layout=\"row\" layout-fill id=\"app\">\r\n  <sidenav class=\"white-bg\"></sidenav>\r\n  <md-divider></md-divider>\r\n  <div layout=\"column\" layout-fill>\r\n    <header>\r\n      <md-toolbar class=\"md-scroll-shrink\">\r\n        <div layout=\"row\" layout-align=\"start center\">\r\n          <md-button class=\"menu md-icon-button\" hide-gt-sm ng-click=\"$ctrl.toggleSidenav()\" aria-label=\"Show Menu\">\r\n            <md-icon md-font-icon=\"menu\" class=\"menu \">menu</md-icon>\r\n          </md-button>\r\n          <h3>Star Wars Database</h3>\r\n        </div>\r\n      </md-toolbar>\r\n    </header>\r\n    <md-content layout=\"column\" flex layout-padding>\r\n      <div flex>\r\n        <ui-view layout-fill></ui-view>\r\n      </div>\r\n    </md-content>\r\n  </div>\r\n</div>\r\n<div id=\"overlay\" class=\"overlay\" ng-show=\"$ctrl.isWaiting()\">\r\n  <div layout=\"row\" layout-fill layout-align=\"center center\">\r\n      <md-progress-circular md-mode=\"indeterminate\" md-diameter=\"100\"></md-progress-circular>\r\n  </div>\r\n</div>\r\n"
+	module.exports = "<div layout=\"row\" layout-fill id=\"app\">\r\n  <sidenav class=\"white-bg\"></sidenav>\r\n  <md-divider></md-divider>\r\n  <div layout=\"column\" layout-fill>\r\n    <header>\r\n      <md-toolbar class=\"md-scroll-shrink\">\r\n        <div layout=\"row\" layout-align=\"start center\">\r\n          <md-button class=\"menu md-icon-button\" hide-gt-sm ng-click=\"$ctrl.toggleSidenav()\" aria-label=\"Show Menu\">\r\n            <md-icon md-font-icon=\"menu\" class=\"menu \">menu</md-icon>\r\n          </md-button>\r\n          <h3>Star Wars Database</h3>\r\n        </div>\r\n      </md-toolbar>\r\n    </header>\r\n    <md-content layout=\"column\" flex layout-padding>\r\n      <div flex>\r\n        <h3 ng-show=\"$ctrl.noCharacterSelected\">Select a character from the menu.</h3>\r\n        <ui-view layout-fill ng-hide=\"$ctrl.noCharacterSelected\"></ui-view>\r\n      </div>\r\n    </md-content>\r\n  </div>\r\n</div>\r\n<div id=\"overlay\" class=\"overlay\" ng-show=\"$ctrl.isWaiting()\">\r\n  <div layout=\"row\" layout-fill layout-align=\"center center\">\r\n      <md-progress-circular md-mode=\"indeterminate\" md-diameter=\"100\"></md-progress-circular>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 /* 102 */
