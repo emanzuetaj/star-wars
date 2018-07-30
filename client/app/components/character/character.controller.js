@@ -9,6 +9,7 @@ class characterController {
     }
     $onInit() {
       if(this._$stateParams.characterId) {
+        this._$rootScope.$broadcast('characterSelected');
         this.getCharacter(this._$stateParams.characterId);
         this.character, this.planet = {};
         this.films, this.starships, this.vehicles, this.species = new Array();

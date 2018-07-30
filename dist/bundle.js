@@ -88,6 +88,10 @@
 	  'ngInject';
 
 	  $mdThemingProvider.theme('default').primaryPalette('cyan').accentPalette('amber');
+	  // Enable browser color
+	  $mdThemingProvider.enableBrowserColor({
+	    palette: 'primary'
+	  });
 	}]).run(["$transitions", "$rootScope", function ($transitions, $rootScope) {
 	  "ngInject";
 
@@ -90181,7 +90185,7 @@
 /* 101 */
 /***/ (function(module, exports) {
 
-	module.exports = "<div layout=\"row\" layout-fill id=\"app\">\r\n  <sidenav class=\"white-bg\"></sidenav>\r\n  <md-divider></md-divider>\r\n  <div layout=\"column\" layout-fill>\r\n    <header>\r\n      <md-toolbar class=\"md-scroll-shrink\">\r\n        <div layout=\"row\" layout-align=\"start center\">\r\n          <md-button class=\"menu md-icon-button\" hide-gt-sm ng-click=\"$ctrl.toggleSidenav()\" aria-label=\"Show Menu\">\r\n            <md-icon md-font-icon=\"menu\" class=\"menu \">menu</md-icon>\r\n          </md-button>\r\n          <h3>Star Wars Data Repo</h3>\r\n        </div>\r\n      </md-toolbar>\r\n    </header>\r\n    <md-content layout=\"column\" flex layout-padding>\r\n      <div flex>\r\n        <ui-view layout-fill></ui-view>\r\n      </div>\r\n    </md-content>\r\n  </div>\r\n</div>\r\n<div id=\"overlay\" class=\"overlay\" ng-show=\"$ctrl.isWaiting()\">\r\n  <div layout=\"row\" layout-fill layout-align=\"center center\">\r\n      <md-progress-circular md-mode=\"indeterminate\" md-diameter=\"100\"></md-progress-circular>\r\n  </div>\r\n</div>\r\n"
+	module.exports = "<div layout=\"row\" layout-fill id=\"app\">\r\n  <sidenav class=\"white-bg\"></sidenav>\r\n  <md-divider></md-divider>\r\n  <div layout=\"column\" layout-fill>\r\n    <header>\r\n      <md-toolbar class=\"md-scroll-shrink\">\r\n        <div layout=\"row\" layout-align=\"start center\">\r\n          <md-button class=\"menu md-icon-button\" hide-gt-sm ng-click=\"$ctrl.toggleSidenav()\" aria-label=\"Show Menu\">\r\n            <md-icon md-font-icon=\"menu\" class=\"menu \">menu</md-icon>\r\n          </md-button>\r\n          <h3>Star Wars Database</h3>\r\n        </div>\r\n      </md-toolbar>\r\n    </header>\r\n    <md-content layout=\"column\" flex layout-padding>\r\n      <div flex>\r\n        <ui-view layout-fill></ui-view>\r\n      </div>\r\n    </md-content>\r\n  </div>\r\n</div>\r\n<div id=\"overlay\" class=\"overlay\" ng-show=\"$ctrl.isWaiting()\">\r\n  <div layout=\"row\" layout-fill layout-align=\"center center\">\r\n      <md-progress-circular md-mode=\"indeterminate\" md-diameter=\"100\"></md-progress-circular>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 /* 102 */

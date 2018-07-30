@@ -14,7 +14,8 @@
     </header>
     <md-content layout="column" flex layout-padding>
       <div flex>
-        <ui-view layout-fill></ui-view>
+        <h3 ng-show="$ctrl.noCharacterSelected">Select a character from the menu.</h3>
+        <ui-view layout-fill ng-hide="$ctrl.noCharacterSelected"></ui-view>
       </div>
     </md-content>
   </div>

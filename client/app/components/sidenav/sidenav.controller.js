@@ -48,7 +48,9 @@ class sidenavController {
           if(!this._$mdMedia('gt-sm') && !this._$state.params.characterId) {
             this._$mdSidenav('left').toggle();
           }
-          this._$rootScope.$broadcast('callAttentionToSidenav');
+          if(!this._$state.params.characterId) {
+            this._$rootScope.$broadcast('noCharacterSelected');
+          }
         },
         (err) => {
           this.showToast('error', 'An error occurred retrieving data for characters.');
