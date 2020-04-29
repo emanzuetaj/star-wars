@@ -89722,7 +89722,7 @@
 	    value: function getCharacter(id) {
 	      var _this = this;
 
-	      this.Swapi.callApi('https://swapi.co/api/people/' + id + '/').then(function (response) {
+	      this.Swapi.callApi('http://swapi.dev/api/people/' + id + '/').then(function (response) {
 	        _this.character = response;
 	        _this.getFilms();
 	        _this.getSpecies();
@@ -89958,7 +89958,7 @@
 	    value: function $onInit() {
 	      var _this = this;
 
-	      this.getCharacters('https://swapi.co/api/people/?page=1');
+	      this.getCharacters('http://swapi.dev/api/people/?page=1');
 	      this._$scope.$on('characterFetchError', function () {
 	        _this.showToast('error', 'An error occurred retrieving data for this character.');
 	        _this.selectFirstCharacterFound();
@@ -90008,7 +90008,7 @@
 	      var _this3 = this;
 
 	      this.pagesData = [];
-	      var pageApiUrl = 'https://swapi.co/api/people/?page=';
+	      var pageApiUrl = 'http://swapi.dev/api/people/?page=';
 
 	      var _loop = function _loop(i) {
 	        _this3.Swapi.callApi(pageApiUrl + (i + 1)).then(function (response) {
@@ -90036,7 +90036,7 @@
 	            this.selectFirstCharacterFound();
 	          } else {
 	            this.selectedCharacter = this._$state.params.characterId;
-	            this.getCharacters('https://swapi.co/api/people/?page=' + this.currentPage);
+	            this.getCharacters('http://swapi.dev/api/people/?page=' + this.currentPage);
 	          }
 	        }
 	        this.navigating = true;
@@ -90048,12 +90048,12 @@
 	      // selecting very first character from pagesData array
 	      this.currentPage = this.pagesData[0].pageNumber;
 	      this.selectCharacter(this.pagesData[0].results[0].url);
-	      this.getCharacters('https://swapi.co/api/people/?page=' + this.currentPage);
+	      this.getCharacters('http://swapi.dev/api/people/?page=' + this.currentPage);
 	    }
 	  }, {
 	    key: 'getCharacterPageNumber',
 	    value: function getCharacterPageNumber(characterId) {
-	      var characterUrl = 'https://swapi.co/api/people/' + characterId + '/';
+	      var characterUrl = 'http://swapi.dev/api/people/' + characterId + '/';
 	      var pageNumber = 0;
 	      // loop through all pages to find character
 	      for (var i = 0; i < this.pagesData.length; i++) {

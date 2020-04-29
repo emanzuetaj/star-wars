@@ -17,7 +17,7 @@ class characterController {
       }
     }
     getCharacter(id) {
-      this.Swapi.callApi('https://swapi.co/api/people/' + id + '/').then(
+      this.Swapi.callApi('http://swapi.dev/api/people/' + id + '/').then(
         (response) => {
           this.character = response;
           this.getFilms();
@@ -33,17 +33,16 @@ class characterController {
     }
     getFilms() {
       this.films = [];
+      var promises = [];
       for(let i = 0; i < this.character.films.length; i++) {
-        this.Swapi.callApi(this.character.films[i]).then(
-          (response) => {
-            this.films.push(response);
-            this.isEverythingDoneLoading();
-          },
-          (err) => {
-            this._$rootScope.$broadcast('characterFetchError');
-          }
-        );
+        promises.push(this.Swapi.callApi(this.character.films[i]));
       }
+      Promise.all(promises).then(response => {
+        this.films = response;
+        this.isEverythingDoneLoading();
+      }, err=> {
+        this._$rootScope.$broadcast('characterFetchError');
+      });
     }
     isEverythingDoneLoading() {
       if(this.planet && this.films.length === this.character.films.length && this.starships.length === this.character.starships.length && this.species.length === this.character.species.length && this.vehicles.length === this.character.vehicles.length) {
@@ -52,46 +51,46 @@ class characterController {
     }
     getStarShips() {
       this.starships = [];
+      var promises = [];
       for(let i = 0; i < this.character.starships.length; i++) {
-        this.Swapi.callApi(this.character.starships[i]).then(
-          (response) => {
-            this.starships.push(response);
-            this.isEverythingDoneLoading();
-          },
-          (err) => {
-            this._$rootScope.$broadcast('characterFetchError');
-          }
-        );
+        promises.push(this.Swapi.callApi(this.character.starships[i]));
       }
+      Promise.all(promises).then(response => {
+        this.starships = response;
+        this.isEverythingDoneLoading();
+      }, err=> {
+        this._$rootScope.$broadcast('characterFetchError');
+      });
     }
     getVehicles() {
       this.vehicles = [];
+      var promises = [];
       for(let i = 0; i < this.character.vehicles.length; i++) {
-        this.Swapi.callApi(this.character.vehicles[i]).then(
-          (response) => {
-            this.vehicles.push(response);
-            this.isEverythingDoneLoading();
-          },
-          (err) => {
-            this._$rootScope.$broadcast('characterFetchError');
-          }
-        );
+        promises.push(this.Swapi.callApi(this.character.vehicles[i]));
       }
+      Promise.all(promises).then(response => {
+        this.vehicles = response;
+        this.isEverythingDoneLoading();
+      }, err=> {
+        this._$rootScope.$broadcast('characterFetchError');
+      });
     }
     getSpecies() {
       this.species = [];
+      this.speciesNames = [];
+      var promises = [];
       for(let i = 0; i < this.character.species.length; i++) {
-        this.Swapi.callApi(this.character.species[i]).then(
-          (response) => {
-            this.species.push(response);
-            this.speciesNames.push(response.name);
-            this.isEverythingDoneLoading();
-          },
-          (err) => {
-            this._$rootScope.$broadcast('characterFetchError');
-          }
-        );
+        promises.push(this.Swapi.callApi(this.character.species[i]));
       }
+      Promise.all(promises).then(response => {
+        this.species = response;
+        for (let i = 0; i < this.species.length;i++) {
+          this.speciesNames.push(this.species[i].name);
+        }
+        this.isEverythingDoneLoading();
+      }, err=> {
+        this._$rootScope.$broadcast('characterFetchError');
+      });
     }
     getPlanet() {
       this.Swapi.callApi(this.character.homeworld).then(

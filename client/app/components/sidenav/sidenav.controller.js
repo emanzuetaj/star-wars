@@ -18,7 +18,7 @@ class sidenavController {
       this._$rootScope = $rootScope;
     }
     $onInit() {
-      this.getCharacters('https://swapi.co/api/people/?page=1');
+      this.getCharacters('http://swapi.dev/api/people/?page=1');
       this._$scope.$on('characterFetchError',()=>{
         this.showToast('error', 'An error occurred retrieving data for this character.');
         this.selectFirstCharacterFound();
@@ -43,7 +43,8 @@ class sidenavController {
           this.next = response.next;
           this.prev = response.previous;
 
-          this.getAllPages();
+          // this.getAllPages();
+          this.getAllPagesTogether();
           // make sure to open automatically open menu for small screens
           if(!this._$mdMedia('gt-sm') && !this._$state.params.characterId) {
             this._$mdSidenav('left').toggle();
@@ -59,21 +60,22 @@ class sidenavController {
         }
       );
     }
-    getAllPages() {
+    getAllPagesTogether() {
       this.pagesData = [];
-      var pageApiUrl = 'https://swapi.co/api/people/?page=';
+      var promises = [];
+      var pageApiUrl = 'http://swapi.dev/api/people/?page=';
       for(let i = 0;i < this.numberOfPages;i++){
-        this.Swapi.callApi(pageApiUrl + (i + 1)).then(
-          (response) => {
-            response.pageNumber = i + 1;
-            this.pagesData.push(response);
-            this.checkDoneLoadingPages();
-          },
-          (err) => {
-            this.showToast('error', 'An error occurred retrieving data for characters');
-          }
-        );
+        promises.push(this.Swapi.callApi(pageApiUrl + (i + 1)));
       }
+      Promise.all(promises).then(results=> {
+        for(let i = 0;i < results.length;i++) {
+          results[i].pageNumber = i + 1;
+          this.pagesData.push(results[i]);
+        }
+        this.checkDoneLoadingPages();
+      }, err => {
+        this.showToast('error', 'An error occurred retrieving data for characters');
+      });
     }
     checkDoneLoadingPages() {
       if(this.pagesData.length === this.numberOfPages) {
@@ -85,7 +87,7 @@ class sidenavController {
             this.selectFirstCharacterFound();
           } else {
             this.selectedCharacter = this._$state.params.characterId;
-            this.getCharacters('https://swapi.co/api/people/?page=' + this.currentPage);
+            this.getCharacters('http://swapi.dev/api/people/?page=' + this.currentPage);
           }
         }
         this.navigating = true;
@@ -95,16 +97,17 @@ class sidenavController {
       // selecting very first character from pagesData array
       this.currentPage = this.pagesData[0].pageNumber;
       this.selectCharacter(this.pagesData[0].results[0].url);
-      this.getCharacters('https://swapi.co/api/people/?page=' + this.currentPage);
+      this.getCharacters('http://swapi.dev/api/people/?page=' + this.currentPage);
     }
     getCharacterPageNumber(characterId){
-      var characterUrl = 'https://swapi.co/api/people/' + characterId + '/';
       var pageNumber = 0;
       // loop through all pages to find character
       for(let i = 0; i < this.pagesData.length;i++) {
         // loop through results in data
-        for(let j = 0; j < this.pagesData[i].results.length;j++){
-          if(this.pagesData[i].results[j].url === characterUrl) {
+        for(let j = 0; j < this.pagesData[i].results.length;j++) {
+          var url = this.pagesData[i].results[j].url.slice(0, -1);
+          var id = url.substr(url.lastIndexOf('/')).replace('/', '');
+          if(id === characterId) {
             pageNumber = this.pagesData[i].pageNumber;
             break;
           }
